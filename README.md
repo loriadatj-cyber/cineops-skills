@@ -1,5 +1,7 @@
 # CineOps Skills
 
+![CineOps production control flow](assets/cineops-social-preview.png)
+
 [![CI](https://github.com/loriadatj-cyber/cineops-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/loriadatj-cyber/cineops-skills/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![External pilots wanted](https://img.shields.io/badge/external_pilots-wanted-2ea44f.svg)](https://github.com/loriadatj-cyber/cineops-skills/issues/2)
@@ -96,6 +98,8 @@ Real use, failed use, and abandoned use are all valuable. Read the [adoption evi
 Independent participants can complete the [15-minute external pilot](docs/EXTERNAL-PILOT-QUICKSTART.md). `cineops evidence` creates an aggregate technical summary that omits creative content, identifiers, messages, and filesystem paths.
 
 The [adoption evidence index](adoption/README.md) reports external cases separately from maintainer pilots.
+
+Maintainers and community members can reuse the [outreach kit](docs/OUTREACH.md). Outreach activity is logged separately and never counted as adoption.
 
 ## Status
 

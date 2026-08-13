@@ -23,3 +23,5 @@ No external case has been accepted yet. Run the [15-minute external pilot](../do
 Maintainers and community members may reuse this invitation without implying endorsement or adoption:
 
 > We are looking for independent filmmakers, AI-video teams, tool integrators, and researchers to test CineOps on one real scene and one to three shots. The pilot takes about 15 minutes. You do not need to share scripts, media, prompts, client identities, or project names. Failed, inconclusive, and abandoned trials are useful. Start at https://github.com/loriadatj-cyber/cineops-skills/blob/main/docs/EXTERNAL-PILOT-QUICKSTART.md
+
+Reusable English and Chinese variants are in the [outreach kit](../docs/OUTREACH.md). Maintainer outreach is recorded in [`outreach-log.csv`](outreach-log.csv) and does not count as adoption.
