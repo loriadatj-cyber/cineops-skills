@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "characters": [
+    {"id": "CHAR-LEAD", "name": "Lead character", "canonical": {}, "unknowns": ["wardrobe state not exported in inventory"], "proposals": []}
+  ],
+  "locations": [
+    {"id": "LOC-TRANSFER", "name": "Transfer corridor", "canonical": {}, "unknowns": ["exact spatial layout omitted"], "proposals": []}
+  ],
+  "props": [
+    {"id": "PROP-REGISTER", "name": "Register", "canonical": {}, "unknowns": [], "proposals": []},
+    {"id": "PROP-CAGE", "name": "Transport cage", "canonical": {}, "unknowns": [], "proposals": []},
+    {"id": "PROP-PIN", "name": "Mechanical pin", "canonical": {}, "unknowns": ["carry state before the final two shots"], "proposals": []}
+  ],
+  "scene_states": [
+    {
+      "scene_id": "SC001",
+      "characters": ["CHAR-LEAD"],
+      "locations": ["LOC-TRANSFER"],
+      "props": ["PROP-REGISTER", "PROP-CAGE", "PROP-PIN"],
+      "entry": {"registry": "held", "cage": "stationary", "screen_direction": "right"},
+      "exit": {"lead_motion": "stable", "maintenance_gate": "narrow_opening_visible", "pin_hand": "right", "screen_direction": "right"},
+      "source_revision": "pilot-capture-2026-08-13"
+    }
+  ]
+}

@@ -256,6 +256,56 @@ def validate_project(root: Path) -> list[Finding]:
     return findings
 
 
+def validate_release_gate(root: Path) -> list[Finding]:
+    findings = validate_project(root)
+    if summarize(findings)["error"]:
+        return findings
+
+    shots = load_json(root / "shot-plan.json")
+    review = load_json(root / "readiness-report.json")
+    shot_ids = {
+        shot.get("id")
+        for shot in shots.get("shots", [])
+        if isinstance(shot, dict) and isinstance(shot.get("id"), str)
+    }
+    reviewed: set[str] = set()
+    for index, item in enumerate(review.get("reviews", [])):
+        if not isinstance(item, dict):
+            continue
+        shot_id = item.get("shot_id")
+        if shot_id in shot_ids:
+            reviewed.add(shot_id)
+        decision = item.get("decision")
+        if decision == "revise":
+            findings.append(
+                _finding(
+                    "error",
+                    "revision-required",
+                    f"readiness-report.json.reviews[{index}].decision",
+                    f"shot '{shot_id}' requires revision before release",
+                )
+            )
+        elif decision == "blocked":
+            findings.append(
+                _finding(
+                    "error",
+                    "blocked-shot",
+                    f"readiness-report.json.reviews[{index}].decision",
+                    f"shot '{shot_id}' is blocked from release",
+                )
+            )
+    for shot_id in sorted(shot_ids - reviewed):
+        findings.append(
+            _finding(
+                "error",
+                "unreviewed-shot-gate",
+                "readiness-report.json",
+                f"shot '{shot_id}' must be reviewed before release",
+            )
+        )
+    return findings
+
+
 def summarize(findings: list[Finding]) -> dict[str, int]:
     counts = {"error": 0, "warning": 0, "info": 0}
     for finding in findings:

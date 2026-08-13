@@ -4,9 +4,9 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from cineops.cli import command_init
+from cineops.cli import command_gate, command_init
 from cineops.impact import compare_ledgers
-from cineops.validator import summarize, validate_project
+from cineops.validator import summarize, validate_project, validate_release_gate
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -107,6 +107,35 @@ class ValidatorTests(unittest.TestCase):
                     for item in case["expected_findings"]
                 }
                 self.assertEqual(expected, actual)
+
+    def test_release_gate_accepts_ready_project(self):
+        findings = validate_release_gate(ROOT / "examples" / "glass-elevator")
+        self.assertEqual(0, summarize(findings)["error"])
+
+    def test_release_gate_rejects_revise_blocked_and_unreviewed_shots(self):
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory)
+            command_init(target)
+            self.assertEqual(1, command_gate(target, output_json=True))
+            findings = validate_release_gate(target)
+            self.assertIn("revision-required", {item.code for item in findings})
+
+            report_path = target / "readiness-report.json"
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+            report["reviews"][0]["decision"] = "blocked"
+            report_path.write_text(json.dumps(report), encoding="utf-8")
+            self.assertIn("blocked-shot", {item.code for item in validate_release_gate(target)})
+
+            report["reviews"] = []
+            report_path.write_text(json.dumps(report), encoding="utf-8")
+            self.assertIn("unreviewed-shot-gate", {item.code for item in validate_release_gate(target)})
+
+    def test_maintainer_pilot_is_structurally_valid_but_not_release_ready(self):
+        pilot = ROOT / "adoption" / "pilots" / "maintainer-001-anonymized-transfer-sequence"
+        self.assertEqual([], validate_project(pilot))
+        gate_findings = validate_release_gate(pilot)
+        self.assertEqual(7, summarize(gate_findings)["error"])
+        self.assertEqual({"revision-required"}, {item.code for item in gate_findings})
 
 
 if __name__ == "__main__":

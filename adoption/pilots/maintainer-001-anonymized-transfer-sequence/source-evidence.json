@@ -1,0 +1,28 @@
+{
+  "capture_date": "2026-08-13",
+  "source_platform": "LibTV",
+  "capture_method": "Authenticated read-only CLI inventory query",
+  "participant_relationship": "Maintainer-operated production; not external adoption",
+  "evidence_level": 0,
+  "observed_counts": {
+    "canvas_nodes": 242,
+    "current_production_group_nodes": 32,
+    "normalized_shots": 7,
+    "labeled_component_duration_seconds": 32,
+    "labeled_assembly_duration_seconds": 36.08
+  },
+  "privacy_transform": {
+    "project_title_replaced": true,
+    "character_names_replaced": true,
+    "workspace_and_canvas_ids_omitted": true,
+    "node_ids_omitted": true,
+    "media_omitted": true,
+    "prompt_text_omitted": true,
+    "account_information_omitted": true
+  },
+  "limitations": [
+    "Inventory names describe intended actions but do not prove visual execution.",
+    "The public fixture cannot independently reproduce private media review.",
+    "This pilot does not count toward external adoption targets."
+  ]
+}

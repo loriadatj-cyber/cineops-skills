@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "project_id": "maintainer-pilot-001",
+  "title": "Anonymized transfer sequence",
+  "episodes": [
+    {
+      "id": "EP001",
+      "title": "Private production excerpt",
+      "scenes": [
+        {"id": "SC001", "summary": "A lead character follows a moving transport cage through a transfer corridor and opens a maintenance gate."}
+      ]
+    }
+  ]
+}

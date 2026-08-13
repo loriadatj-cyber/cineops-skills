@@ -9,7 +9,12 @@ import sys
 from pathlib import Path
 
 from .impact import compare_ledgers
-from .validator import load_json, summarize, validate_project
+from .validator import (
+    load_json,
+    summarize,
+    validate_project,
+    validate_release_gate,
+)
 
 
 def _template_dir() -> Path:
@@ -43,6 +48,24 @@ def command_validate(root: Path, output_json: bool) -> int:
     return 1 if counts["error"] else 0
 
 
+def command_gate(root: Path, output_json: bool) -> int:
+    findings = validate_release_gate(root)
+    counts = summarize(findings)
+    if output_json:
+        report = {
+            "release_ready": counts["error"] == 0,
+            "findings": [finding.__dict__ for finding in findings],
+            "summary": counts,
+        }
+        print(json.dumps(report, indent=2))
+    else:
+        for finding in findings:
+            print(finding.render())
+        status = "READY" if counts["error"] == 0 else "NOT READY"
+        print(f"Release gate: {status} ({counts['error']} error(s), {counts['warning']} warning(s))")
+    return 1 if counts["error"] else 0
+
+
 def command_impact(before: Path, after: Path) -> int:
     report = compare_ledgers(load_json(before), load_json(after))
     print(json.dumps(report, indent=2))
@@ -58,6 +81,9 @@ def build_parser() -> argparse.ArgumentParser:
     validate_parser = subparsers.add_parser("validate", help="validate a CineOps project")
     validate_parser.add_argument("project", type=Path)
     validate_parser.add_argument("--json", action="store_true", dest="output_json")
+    gate_parser = subparsers.add_parser("gate", help="enforce release readiness for every shot")
+    gate_parser.add_argument("project", type=Path)
+    gate_parser.add_argument("--json", action="store_true", dest="output_json")
     impact_parser = subparsers.add_parser("impact", help="compare two continuity ledgers")
     impact_parser.add_argument("before", type=Path)
     impact_parser.add_argument("after", type=Path)
@@ -70,6 +96,8 @@ def main(argv: list[str] | None = None) -> int:
         return command_init(args.destination)
     if args.command == "validate":
         return command_validate(args.project, args.output_json)
+    if args.command == "gate":
+        return command_gate(args.project, args.output_json)
     if args.command == "impact":
         return command_impact(args.before, args.after)
     return 2

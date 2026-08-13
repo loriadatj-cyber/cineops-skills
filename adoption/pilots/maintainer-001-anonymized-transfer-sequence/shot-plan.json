@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "shots": [
+    {
+      "id": "SH001", "scene_id": "SC001", "order": 1, "duration_seconds": 4,
+      "purpose": "Return one prop and establish contact with the moving objective",
+      "action": "The lead returns the register and takes hold of the transport cage.",
+      "camera": "Inventory metadata does not preserve the camera contract.",
+      "characters": ["CHAR-LEAD"], "props": ["PROP-REGISTER", "PROP-CAGE"], "location_id": "LOC-TRANSFER",
+      "source_revision": "pilot-capture-2026-08-13",
+      "entry_state": {"registry": "held", "cage": "stationary", "screen_direction": "right"},
+      "exit_state": {"registry": "returned", "cage": "guided", "screen_direction": "right"}
+    },
+    {
+      "id": "SH002", "scene_id": "SC001", "order": 2, "duration_seconds": 4,
+      "purpose": "Carry the cage into the transfer gate",
+      "action": "The lead guides the cage normally into the transfer gate.",
+      "camera": "Inventory metadata does not preserve the camera contract.",
+      "characters": ["CHAR-LEAD"], "props": ["PROP-CAGE"], "location_id": "LOC-TRANSFER",
+      "source_revision": "pilot-capture-2026-08-13",
+      "entry_state": {"registry": "returned", "cage": "guided", "screen_direction": "right"},
+      "exit_state": {"registry": "returned", "cage": "entering_transfer_gate", "screen_direction": "right"}
+    },
+    {
+      "id": "SH003", "scene_id": "SC001", "order": 3, "duration_seconds": 4,
+      "purpose": "Let the cage move ahead before pursuit begins",
+      "action": "The transfer gate closes and the cage moves ahead while the lead has not started running.",
+      "camera": "Inventory metadata does not preserve the camera contract.",
+      "characters": ["CHAR-LEAD"], "props": ["PROP-CAGE"], "location_id": "LOC-TRANSFER",
+      "source_revision": "pilot-capture-2026-08-13",
+      "entry_state": {"cage": "entering_transfer_gate", "screen_direction": "right"},
+      "exit_state": {"cage": "moving_ahead", "lead_motion": "not_running", "screen_direction": "right"}
+    },
+    {
+      "id": "SH004", "scene_id": "SC001", "order": 4, "duration_seconds": 4,
+      "purpose": "Begin pursuit only after the cage is moving",
+      "action": "The lead accelerates for two steps, jumps rightward, and grips the same cage bottom.",
+      "camera": "Inventory metadata does not preserve the camera contract.",
+      "characters": ["CHAR-LEAD"], "props": ["PROP-CAGE"], "location_id": "LOC-TRANSFER",
+      "source_revision": "pilot-capture-2026-08-13",
+      "entry_state": {"cage": "moving_ahead", "lead_motion": "not_running", "screen_direction": "right"},
+      "exit_state": {"cage": "moving_ahead", "lead_motion": "gripping_same_cage_bottom", "screen_direction": "right"}
+    },
+    {
+      "id": "SH005", "scene_id": "SC001", "order": 5, "duration_seconds": 8,
+      "purpose": "Sustain the rightward slide until the maintenance grating is reachable",
+      "action": "The lead remains attached to the cage during a long rightward slide.",
+      "camera": "Inventory metadata records a sustained rightward reveal but omits exact lens and blocking.",
+      "characters": ["CHAR-LEAD"], "props": ["PROP-CAGE"], "location_id": "LOC-TRANSFER",
+      "source_revision": "pilot-capture-2026-08-13",
+      "entry_state": {"cage": "moving_ahead", "lead_motion": "gripping_same_cage_bottom", "screen_direction": "right"},
+      "exit_state": {"cage": "moving_ahead", "lead_motion": "long_slide", "maintenance_grating": "reachable", "screen_direction": "right"}
+    },
+    {
+      "id": "SH006", "scene_id": "SC001", "order": 6, "duration_seconds": 4,
+      "purpose": "Release and absorb the landing before opening the gate",
+      "action": "The lead releases, lands to the right, and absorbs the impact.",
+      "camera": "Inventory metadata does not preserve the camera contract.",
+      "characters": ["CHAR-LEAD"], "props": ["PROP-CAGE", "PROP-PIN"], "location_id": "LOC-TRANSFER",
+      "source_revision": "pilot-capture-2026-08-13",
+      "entry_state": {"cage": "moving_ahead", "lead_motion": "long_slide", "maintenance_grating": "reachable", "screen_direction": "right"},
+      "exit_state": {"lead_motion": "landed_absorbing_impact", "maintenance_grating": "reachable", "pin_hand": "right", "screen_direction": "right"}
+    },
+    {
+      "id": "SH007", "scene_id": "SC001", "order": 7, "duration_seconds": 4,
+      "purpose": "Open a visible route through the maintenance gate",
+      "action": "After stabilizing, the lead uses the pin in the right hand to open a narrow gate gap.",
+      "camera": "Inventory metadata does not preserve the camera contract.",
+      "characters": ["CHAR-LEAD"], "props": ["PROP-PIN"], "location_id": "LOC-TRANSFER",
+      "source_revision": "pilot-capture-2026-08-13",
+      "entry_state": {"lead_motion": "landed_absorbing_impact", "maintenance_grating": "reachable", "pin_hand": "right", "screen_direction": "right"},
+      "exit_state": {"lead_motion": "stable", "maintenance_gate": "narrow_opening_visible", "pin_hand": "right", "screen_direction": "right"}
+    }
+  ]
+}

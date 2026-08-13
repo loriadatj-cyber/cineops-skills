@@ -29,12 +29,14 @@ Install the CLI locally:
 python -m pip install -e .
 cineops init my-production
 cineops validate my-production
+cineops gate my-production
 ```
 
 Validate the included reproducible example:
 
 ```bash
 cineops validate examples/glass-elevator
+cineops gate examples/glass-elevator
 ```
 
 Compare continuity revisions:
@@ -64,6 +66,8 @@ A project directory contains four JSON artifacts:
 
 Stable IDs use `EP001`, `SC001`, `SH001`, `CHAR-*`, `LOC-*`, and `PROP-*`. The CLI rejects malformed IDs, duplicate IDs, broken references, invalid shot timing, contradictory readiness decisions, stale source revisions, and state mismatches between adjacent shots. It warns when scenes lack state records or shots lack readiness review.
 
+`cineops validate` checks whether the artifact handoff is structurally coherent. `cineops gate` additionally fails when any shot is marked `revise` or `blocked`, or has no review. Keeping the commands separate lets teams inspect incomplete work without accidentally treating it as release-ready.
+
 ## Design Principles
 
 - Human approval owns canon, publishing, and paid generation.
@@ -84,6 +88,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md), [ROADMAP.md](ROADMAP.md), and [SECURITY.
 ## Share A Production Case
 
 Real use, failed use, and abandoned use are all valuable. Read the [adoption evidence policy](docs/ADOPTION.md), then open a Production adoption report or use the [case template](docs/adoption-case.template.md). Reports must separate observed evidence from interpretation and must not expose private production material.
+
+The [adoption evidence index](adoption/README.md) reports external cases separately from maintainer pilots.
 
 ## Status
 

@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "reviews": [
+    {"shot_id": "SH001", "decision": "revise", "checks": {"continuity": "unknown", "blocking": "unknown", "camera": "unknown", "performance": "unknown", "generation_clarity": "unknown"}, "notes": ["Node inventory confirms a named segment, not visual approval."]},
+    {"shot_id": "SH002", "decision": "revise", "checks": {"continuity": "unknown", "blocking": "unknown", "camera": "unknown", "performance": "unknown", "generation_clarity": "unknown"}, "notes": ["Camera and exact boundary pose require media inspection."]},
+    {"shot_id": "SH003", "decision": "revise", "checks": {"continuity": "unknown", "blocking": "unknown", "camera": "unknown", "performance": "unknown", "generation_clarity": "unknown"}, "notes": ["The inventory label records the intended timing relationship only."]},
+    {"shot_id": "SH004", "decision": "revise", "checks": {"continuity": "unknown", "blocking": "unknown", "camera": "unknown", "performance": "unknown", "generation_clarity": "unknown"}, "notes": ["The same-cage continuity claim needs frame-level confirmation."]},
+    {"shot_id": "SH005", "decision": "revise", "checks": {"continuity": "unknown", "blocking": "unknown", "camera": "unknown", "performance": "unknown", "generation_clarity": "unknown"}, "notes": ["Screen direction is present in naming but has not been independently measured."]},
+    {"shot_id": "SH006", "decision": "revise", "checks": {"continuity": "unknown", "blocking": "unknown", "camera": "unknown", "performance": "unknown", "generation_clarity": "unknown"}, "notes": ["Landing state and prop hand require visual review."]},
+    {"shot_id": "SH007", "decision": "revise", "checks": {"continuity": "unknown", "blocking": "unknown", "camera": "unknown", "performance": "unknown", "generation_clarity": "unknown"}, "notes": ["Gate opening and final pose require visual review."]}
+  ]
+}
