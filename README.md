@@ -43,6 +43,14 @@ Compare continuity revisions:
 cineops impact old-continuity-ledger.json new-continuity-ledger.json
 ```
 
+Run the versioned continuity-failure corpus:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+The corpus contains 12 original synthetic handoff failures covering broken references, duplicate IDs, prop possession, wardrobe, visible damage, knowledge state, screen direction, timing, review gates, and stale source revisions. See [benchmarks/continuity-failures](benchmarks/continuity-failures) for its version, expected findings, and limitations.
+
 Install the repository as a Codex Plugin from its GitHub URL or local path. The plugin manifest is at `.codex-plugin/plugin.json`; each skill can also be inspected independently under `skills/`.
 
 ## Artifact Contract
@@ -54,7 +62,7 @@ A project directory contains four JSON artifacts:
 - `shot-plan.json`: ordered shots with observable action and entry/exit state.
 - `readiness-report.json`: one review decision per shot.
 
-Stable IDs use `EP001`, `SC001`, `SH001`, `CHAR-*`, `LOC-*`, and `PROP-*`. The CLI rejects malformed IDs, duplicate IDs, broken references, invalid shot timing, and invalid review decisions. It warns when scenes lack state records or shots lack readiness review.
+Stable IDs use `EP001`, `SC001`, `SH001`, `CHAR-*`, `LOC-*`, and `PROP-*`. The CLI rejects malformed IDs, duplicate IDs, broken references, invalid shot timing, contradictory readiness decisions, stale source revisions, and state mismatches between adjacent shots. It warns when scenes lack state records or shots lack readiness review.
 
 ## Design Principles
 

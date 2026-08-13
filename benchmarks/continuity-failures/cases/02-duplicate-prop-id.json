@@ -1,0 +1,7 @@
+{
+  "id": "duplicate-prop-id",
+  "title": "Two canonical props reuse one stable ID",
+  "primary_failure": "A copied prop record retained the original prop ID.",
+  "mutations": [{"artifact": "continuity-ledger.json", "operation": "append", "path": ["props"], "value": {"id": "PROP-CASE", "name": "Spare case", "canonical": {}, "unknowns": [], "proposals": []}}],
+  "expected_findings": [{"severity": "error", "code": "duplicate-id", "path": "continuity-ledger.json.props[1]"}]
+}

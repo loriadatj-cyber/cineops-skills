@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "shots": [
+    {
+      "id": "SH001",
+      "scene_id": "SC001",
+      "order": 1,
+      "duration_seconds": 4,
+      "purpose": "Establish the handoff conditions",
+      "action": "Bo crosses frame holding the sealed case while Lin watches the red signal.",
+      "camera": "Locked medium wide",
+      "characters": ["CHAR-BO", "CHAR-LIN"],
+      "props": ["PROP-CASE"],
+      "location_id": "LOC-PLATFORM",
+      "source_revision": "v1",
+      "entry_state": {"prop_owner": "CHAR-BO", "wardrobe": "gray coat", "damage": "cut on left cheek", "knowledge": "code unknown", "screen_direction": "right"},
+      "exit_state": {"prop_owner": "CHAR-BO", "wardrobe": "gray coat", "damage": "cut on left cheek", "knowledge": "code known", "screen_direction": "right"}
+    },
+    {
+      "id": "SH002",
+      "scene_id": "SC001",
+      "order": 2,
+      "duration_seconds": 5,
+      "purpose": "Confirm the revealed code changes the plan",
+      "action": "Lin states the code and Bo stops beside the signal post without releasing the case.",
+      "camera": "Static two-shot from the same side of the axis",
+      "characters": ["CHAR-BO", "CHAR-LIN"],
+      "props": ["PROP-CASE"],
+      "location_id": "LOC-PLATFORM",
+      "source_revision": "v1",
+      "entry_state": {"prop_owner": "CHAR-BO", "wardrobe": "gray coat", "damage": "cut on left cheek", "knowledge": "code known", "screen_direction": "right"},
+      "exit_state": {"prop_owner": "CHAR-BO", "wardrobe": "gray coat", "damage": "cut on left cheek", "knowledge": "code known", "screen_direction": "right"}
+    }
+  ]
+}

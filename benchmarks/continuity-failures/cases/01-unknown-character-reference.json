@@ -1,0 +1,7 @@
+{
+  "id": "unknown-character-reference",
+  "title": "Shot references a character absent from canon",
+  "primary_failure": "A renamed character ID was not propagated to the shot plan.",
+  "mutations": [{"artifact": "shot-plan.json", "operation": "set", "path": ["shots", 0, "characters", 0], "value": "CHAR-UNKNOWN"}],
+  "expected_findings": [{"severity": "error", "code": "unknown-reference", "path": "shot-plan.json.shots[0].characters[0]"}]
+}

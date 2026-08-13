@@ -1,0 +1,7 @@
+{
+  "id": "screen-direction-flip",
+  "title": "Screen direction flips across the edit",
+  "primary_failure": "The subject exits screen-right and enters the next shot moving screen-left.",
+  "mutations": [{"artifact": "shot-plan.json", "operation": "set", "path": ["shots", 1, "entry_state", "screen_direction"], "value": "left"}],
+  "expected_findings": [{"severity": "error", "code": "shot-state-mismatch", "path": "shot-plan.json.shots[1].entry_state.screen_direction"}]
+}

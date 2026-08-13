@@ -1,0 +1,7 @@
+{
+  "id": "visible-damage-jump",
+  "title": "Visible injury disappears between shots",
+  "primary_failure": "A visible cheek cut vanishes without an intervening event.",
+  "mutations": [{"artifact": "shot-plan.json", "operation": "set", "path": ["shots", 1, "entry_state", "damage"], "value": "none"}],
+  "expected_findings": [{"severity": "error", "code": "shot-state-mismatch", "path": "shot-plan.json.shots[1].entry_state.damage"}]
+}

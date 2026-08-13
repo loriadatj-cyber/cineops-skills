@@ -1,0 +1,7 @@
+{
+  "id": "missing-readiness-review",
+  "title": "A shot bypasses generation readiness review",
+  "primary_failure": "The second shot exists in the plan but has no readiness decision.",
+  "mutations": [{"artifact": "readiness-report.json", "operation": "delete", "path": ["reviews", 1]}],
+  "expected_findings": [{"severity": "warning", "code": "unreviewed-shot", "path": "readiness-report.json"}]
+}

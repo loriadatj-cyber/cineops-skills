@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "project_id": "synthetic-night-platform",
+  "title": "Night Platform",
+  "episodes": [
+    {
+      "id": "EP001",
+      "title": "Signal",
+      "scenes": [
+        {"id": "SC001", "summary": "Bo carries a sealed case across an empty platform while Lin watches the signal."}
+      ]
+    }
+  ]
+}

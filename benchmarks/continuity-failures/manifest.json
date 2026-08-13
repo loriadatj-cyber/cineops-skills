@@ -1,0 +1,20 @@
+{
+  "corpus_version": "0.1.0",
+  "artifact_schema_version": "1.0",
+  "license": "Apache-2.0",
+  "provenance": "Original synthetic fixtures created for CineOps; no private production data.",
+  "cases": [
+    "01-unknown-character-reference.json",
+    "02-duplicate-prop-id.json",
+    "03-prop-possession-jump.json",
+    "04-wardrobe-jump.json",
+    "05-visible-damage-jump.json",
+    "06-knowledge-state-jump.json",
+    "07-screen-direction-flip.json",
+    "08-shot-order-regression.json",
+    "09-invalid-shot-duration.json",
+    "10-missing-readiness-review.json",
+    "11-ready-with-failed-check.json",
+    "12-stale-source-revision.json"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "id": "knowledge-state-jump",
+  "title": "Character knowledge regresses between shots",
+  "primary_failure": "The revealed code becomes unknown again at the next cut.",
+  "mutations": [{"artifact": "shot-plan.json", "operation": "set", "path": ["shots", 1, "entry_state", "knowledge"], "value": "code unknown"}],
+  "expected_findings": [{"severity": "error", "code": "shot-state-mismatch", "path": "shot-plan.json.shots[1].entry_state.knowledge"}]
+}

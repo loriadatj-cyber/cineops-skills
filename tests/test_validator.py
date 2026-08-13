@@ -1,3 +1,4 @@
+import copy
 import json
 import tempfile
 import unittest
@@ -58,6 +59,54 @@ class ValidatorTests(unittest.TestCase):
         report = compare_ledgers(before, after)
         self.assertEqual(["SC001"], report["affected_scenes"])
         self.assertTrue(report["review_required"])
+
+    def test_benchmark_corpus_is_reproducible(self):
+        corpus = ROOT / "benchmarks" / "continuity-failures"
+        manifest = json.loads((corpus / "manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual("0.1.0", manifest["corpus_version"])
+        self.assertEqual("1.0", manifest["artifact_schema_version"])
+        self.assertEqual("Apache-2.0", manifest["license"])
+        self.assertEqual(12, len(manifest["cases"]))
+        self.assertEqual(12, len(set(manifest["cases"])))
+
+        base = {
+            path.name: json.loads(path.read_text(encoding="utf-8"))
+            for path in (corpus / "base").glob("*.json")
+        }
+        self.assertEqual([], validate_project(corpus / "base"))
+
+        for case_name in manifest["cases"]:
+            with self.subTest(case=case_name):
+                case = json.loads((corpus / "cases" / case_name).read_text(encoding="utf-8"))
+                documents = copy.deepcopy(base)
+                for mutation in case["mutations"]:
+                    target = documents[mutation["artifact"]]
+                    for segment in mutation["path"][:-1]:
+                        target = target[segment]
+                    final = mutation["path"][-1]
+                    if mutation["operation"] == "set":
+                        target[final] = mutation["value"]
+                    elif mutation["operation"] == "append":
+                        target[final].append(mutation["value"])
+                    elif mutation["operation"] == "delete":
+                        del target[final]
+                    else:
+                        self.fail(f"unknown mutation operation: {mutation['operation']}")
+
+                with tempfile.TemporaryDirectory() as directory:
+                    fixture = Path(directory)
+                    for name, document in documents.items():
+                        (fixture / name).write_text(json.dumps(document), encoding="utf-8")
+                    actual = {
+                        (finding.severity, finding.code, finding.path)
+                        for finding in validate_project(fixture)
+                    }
+
+                expected = {
+                    (item["severity"], item["code"], item["path"])
+                    for item in case["expected_findings"]
+                }
+                self.assertEqual(expected, actual)
 
 
 if __name__ == "__main__":

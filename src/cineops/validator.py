@@ -78,6 +78,25 @@ def _check_refs(values: Any, allowed: set[str], path: str, kind: str) -> list[Fi
     ]
 
 
+def _check_state_transition(
+    previous: dict[str, Any],
+    current: dict[str, Any],
+    current_path: str,
+) -> list[Finding]:
+    findings: list[Finding] = []
+    for key in sorted(previous.keys() & current.keys()):
+        if previous[key] != current[key]:
+            findings.append(
+                _finding(
+                    "error",
+                    "shot-state-mismatch",
+                    f"{current_path}.{key}",
+                    f"entry state {current[key]!r} does not match previous exit state {previous[key]!r}",
+                )
+            )
+    return findings
+
+
 def validate_project(root: Path) -> list[Finding]:
     findings: list[Finding] = []
     paths = {
@@ -139,6 +158,12 @@ def validate_project(root: Path) -> list[Finding]:
         findings.append(_finding("error", "empty-production", "project.json.episodes", "at least one episode is required"))
 
     previous_order = -1
+    previous_shot_by_scene: dict[str, dict[str, Any]] = {}
+    scene_state_by_id = {
+        state.get("scene_id"): state
+        for state in ledger.get("scene_states", [])
+        if isinstance(state, dict) and isinstance(state.get("scene_id"), str)
+    }
     for index, shot in enumerate(shots.get("shots", [])):
         if not isinstance(shot, dict):
             continue
@@ -161,6 +186,29 @@ def validate_project(root: Path) -> list[Finding]:
         if location_id is not None and location_id not in location_ids:
             findings.append(_finding("error", "unknown-reference", path + ".location_id", f"unknown location '{location_id}'"))
 
+        entry_state = shot.get("entry_state")
+        exit_state = shot.get("exit_state")
+        previous_shot = previous_shot_by_scene.get(scene_id)
+        if previous_shot is not None and isinstance(entry_state, dict):
+            previous_exit = previous_shot.get("exit_state")
+            if isinstance(previous_exit, dict):
+                findings += _check_state_transition(previous_exit, entry_state, path + ".entry_state")
+        if isinstance(scene_id, str):
+            previous_shot_by_scene[scene_id] = shot
+
+        shot_revision = shot.get("source_revision")
+        scene_state = scene_state_by_id.get(scene_id)
+        ledger_revision = scene_state.get("source_revision") if isinstance(scene_state, dict) else None
+        if shot_revision is not None and ledger_revision is not None and shot_revision != ledger_revision:
+            findings.append(
+                _finding(
+                    "error",
+                    "source-revision-mismatch",
+                    path + ".source_revision",
+                    f"shot uses revision '{shot_revision}' but canonical scene state uses '{ledger_revision}'",
+                )
+            )
+
     reviewed: set[str] = set()
     for index, item in enumerate(review.get("reviews", [])):
         path = f"readiness-report.json.reviews[{index}]"
@@ -178,6 +226,17 @@ def validate_project(root: Path) -> list[Finding]:
         checks = item.get("checks")
         if not isinstance(checks, dict) or any(value not in {"pass", "fail", "unknown"} for value in checks.values()):
             findings.append(_finding("error", "invalid-checks", path + ".checks", "check values must be pass, fail, or unknown"))
+        elif item.get("decision") == "ready":
+            unresolved = sorted(key for key, value in checks.items() if value != "pass")
+            if unresolved:
+                findings.append(
+                    _finding(
+                        "error",
+                        "ready-check-failed",
+                        path + ".checks",
+                        "ready decisions require every check to pass; unresolved: " + ", ".join(unresolved),
+                    )
+                )
     for shot_id in sorted(shot_ids - reviewed):
         findings.append(_finding("warning", "unreviewed-shot", "readiness-report.json", f"shot '{shot_id}' has no readiness review"))
 

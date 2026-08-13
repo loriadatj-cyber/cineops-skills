@@ -1,0 +1,7 @@
+{
+  "id": "prop-possession-jump",
+  "title": "Prop changes hands between adjacent shots",
+  "primary_failure": "The second shot starts with Lin holding a case that Bo still held at the prior cut.",
+  "mutations": [{"artifact": "shot-plan.json", "operation": "set", "path": ["shots", 1, "entry_state", "prop_owner"], "value": "CHAR-LIN"}],
+  "expected_findings": [{"severity": "error", "code": "shot-state-mismatch", "path": "shot-plan.json.shots[1].entry_state.prop_owner"}]
+}

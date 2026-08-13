@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "characters": [
+    {"id": "CHAR-BO", "name": "Bo", "canonical": {"wardrobe": "gray coat"}, "unknowns": [], "proposals": []},
+    {"id": "CHAR-LIN", "name": "Lin", "canonical": {"wardrobe": "station uniform"}, "unknowns": [], "proposals": []}
+  ],
+  "locations": [
+    {"id": "LOC-PLATFORM", "name": "Night platform", "canonical": {"signal": "red"}, "unknowns": [], "proposals": []}
+  ],
+  "props": [
+    {"id": "PROP-CASE", "name": "Sealed case", "canonical": {"owner": "CHAR-BO"}, "unknowns": [], "proposals": []}
+  ],
+  "scene_states": [
+    {
+      "scene_id": "SC001",
+      "characters": ["CHAR-BO", "CHAR-LIN"],
+      "locations": ["LOC-PLATFORM"],
+      "props": ["PROP-CASE"],
+      "entry": {"prop_owner": "CHAR-BO", "wardrobe": "gray coat", "damage": "cut on left cheek", "knowledge": "code unknown", "screen_direction": "right"},
+      "exit": {"prop_owner": "CHAR-BO", "wardrobe": "gray coat", "damage": "cut on left cheek", "knowledge": "code known", "screen_direction": "right"},
+      "source_revision": "v1"
+    }
+  ]
+}

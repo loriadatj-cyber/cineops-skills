@@ -1,0 +1,7 @@
+{
+  "id": "invalid-shot-duration",
+  "title": "Shot has a zero-second duration",
+  "primary_failure": "A timing export collapsed a required shot to zero seconds.",
+  "mutations": [{"artifact": "shot-plan.json", "operation": "set", "path": ["shots", 0, "duration_seconds"], "value": 0}],
+  "expected_findings": [{"severity": "error", "code": "invalid-duration", "path": "shot-plan.json.shots[0].duration_seconds"}]
+}

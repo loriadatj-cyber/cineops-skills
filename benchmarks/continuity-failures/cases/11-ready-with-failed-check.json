@@ -1,0 +1,7 @@
+{
+  "id": "ready-with-failed-check",
+  "title": "Ready decision contradicts a failed gate",
+  "primary_failure": "The review marks a shot ready while its continuity check is failed.",
+  "mutations": [{"artifact": "readiness-report.json", "operation": "set", "path": ["reviews", 0, "checks", "continuity"], "value": "fail"}],
+  "expected_findings": [{"severity": "error", "code": "ready-check-failed", "path": "readiness-report.json.reviews[0].checks"}]
+}

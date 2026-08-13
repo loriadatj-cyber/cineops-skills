@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0",
+  "reviews": [
+    {"shot_id": "SH001", "decision": "ready", "checks": {"continuity": "pass", "blocking": "pass", "camera": "pass", "performance": "pass", "generation_clarity": "pass"}, "notes": []},
+    {"shot_id": "SH002", "decision": "ready", "checks": {"continuity": "pass", "blocking": "pass", "camera": "pass", "performance": "pass", "generation_clarity": "pass"}, "notes": []}
+  ]
+}

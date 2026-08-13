@@ -1,0 +1,7 @@
+{
+  "id": "shot-order-regression",
+  "title": "Shot order is not strictly increasing",
+  "primary_failure": "Two adjacent shot records claim the same timeline order.",
+  "mutations": [{"artifact": "shot-plan.json", "operation": "set", "path": ["shots", 1, "order"], "value": 1}],
+  "expected_findings": [{"severity": "error", "code": "shot-order", "path": "shot-plan.json.shots[1].order"}]
+}

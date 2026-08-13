@@ -13,7 +13,7 @@
 - [ ] Validate three anonymized real production cases
 - [ ] Add machine-readable source citations to canonical facts
 - [ ] Add a migration command for schema changes
-- [ ] Publish benchmark fixtures for known continuity failures
+- [x] Publish benchmark fixtures for known continuity failures
 
 ## Later
 

@@ -1,0 +1,7 @@
+{
+  "id": "stale-source-revision",
+  "title": "Shot uses an obsolete canonical revision",
+  "primary_failure": "A downstream shot was not refreshed after the scene canon advanced to v1.",
+  "mutations": [{"artifact": "shot-plan.json", "operation": "set", "path": ["shots", 1, "source_revision"], "value": "v0"}],
+  "expected_findings": [{"severity": "error", "code": "source-revision-mismatch", "path": "shot-plan.json.shots[1].source_revision"}]
+}

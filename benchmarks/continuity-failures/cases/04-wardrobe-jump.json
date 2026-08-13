@@ -1,0 +1,7 @@
+{
+  "id": "wardrobe-jump",
+  "title": "Wardrobe changes at an unmotivated cut",
+  "primary_failure": "Bo's gray coat becomes blue between adjacent shots.",
+  "mutations": [{"artifact": "shot-plan.json", "operation": "set", "path": ["shots", 1, "entry_state", "wardrobe"], "value": "blue coat"}],
+  "expected_findings": [{"severity": "error", "code": "shot-state-mismatch", "path": "shot-plan.json.shots[1].entry_state.wardrobe"}]
+}
