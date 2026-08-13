@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0",
+  "characters": [{"id": "CHAR-LEAD", "name": "Lead", "canonical": {}, "unknowns": [], "proposals": []}],
+  "locations": [{"id": "LOC-ROOM", "name": "Room", "canonical": {}, "unknowns": [], "proposals": []}],
+  "props": [],
+  "scene_states": [{"scene_id": "SC001", "characters": ["CHAR-LEAD"], "locations": ["LOC-ROOM"], "props": [], "entry": {}, "exit": {}, "source_revision": "draft-1"}]
+}

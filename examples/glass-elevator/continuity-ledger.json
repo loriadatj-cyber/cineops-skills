@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "characters": [
+    {"id": "CHAR-MARA", "name": "Mara", "canonical": {"wardrobe": "charcoal raincoat", "accessibility": "uses a folding cane"}, "unknowns": [], "proposals": []}
+  ],
+  "locations": [
+    {"id": "LOC-LIFT", "name": "Glass service lift", "canonical": {"doors": "brass lattice", "controls": "unlit floor buttons"}, "unknowns": [], "proposals": []}
+  ],
+  "props": [
+    {"id": "PROP-CARD", "name": "Blue access card", "canonical": {"owner": "CHAR-MARA"}, "unknowns": [], "proposals": []}
+  ],
+  "scene_states": [
+    {"scene_id": "SC001", "characters": ["CHAR-MARA"], "locations": ["LOC-LIFT"], "props": ["PROP-CARD"], "entry": {"card": "right hand", "knowledge": "lift appears ordinary"}, "exit": {"card": "hidden in left sleeve", "knowledge": "lift reacts to secrets"}, "source_revision": "v1"},
+    {"scene_id": "SC002", "characters": ["CHAR-MARA"], "locations": ["LOC-LIFT"], "props": ["PROP-CARD"], "entry": {"card": "hidden in left sleeve", "lift": "between floors"}, "exit": {"card": "hidden in left sleeve", "lift": "below basement level"}, "source_revision": "v1"}
+  ]
+}

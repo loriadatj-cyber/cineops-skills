@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0",
+  "reviews": [
+    {"shot_id": "SH001", "decision": "revise", "checks": {"continuity": "unknown", "blocking": "unknown", "camera": "pass", "performance": "unknown", "generation_clarity": "unknown"}, "notes": ["Resolve unknown checks before generation."]}
+  ]
+}

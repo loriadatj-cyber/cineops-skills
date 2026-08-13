@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "project_id": "glass-elevator",
+  "title": "The Glass Elevator",
+  "episodes": [
+    {
+      "id": "EP001",
+      "title": "The Listening Lift",
+      "scenes": [
+        {"id": "SC001", "summary": "Mara enters an empty lift and discovers it responds to secrets rather than floor buttons."},
+        {"id": "SC002", "summary": "Mara tests the lift with a false confession and is carried below the building."}
+      ]
+    }
+  ]
+}

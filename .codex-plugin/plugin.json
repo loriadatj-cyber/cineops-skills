@@ -1,0 +1,18 @@
+{
+  "name": "cineops-skills",
+  "version": "0.1.0",
+  "description": "Production control skills and deterministic quality gates for AI filmmaking.",
+  "author": {
+    "name": "CineOps contributors"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "CineOps Skills",
+    "shortDescription": "Plan, validate, and review AI film production artifacts.",
+    "longDescription": "CineOps Skills adds an inspectable workflow for screenplay diagnosis, shot planning, continuity tracking, and generation-readiness review.",
+    "developerName": "CineOps contributors",
+    "category": "Developer Tools",
+    "capabilities": ["skills"],
+    "defaultPrompt": "Use CineOps to route this film-production task and preserve continuity across every handoff."
+  }
+}

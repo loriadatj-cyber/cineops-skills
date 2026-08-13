@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cineops"
+version = "0.1.0"
+description = "Deterministic production control for AI filmmaking workflows"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+authors = [{name = "CineOps contributors"}]
+keywords = ["ai-film", "continuity", "shot-list", "codex-skills", "production"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Multimedia :: Video",
+]
+
+[project.urls]
+Homepage = "https://github.com/loriadatj-cyber/cineops-skills"
+Issues = "https://github.com/loriadatj-cyber/cineops-skills/issues"
+
+[project.scripts]
+cineops = "cineops.cli:main"
+
+[project.optional-dependencies]
+dev = ["jsonschema>=4"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+cineops = ["templates/*.json"]

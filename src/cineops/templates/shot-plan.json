@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0",
+  "shots": [
+    {"id": "SH001", "scene_id": "SC001", "order": 1, "duration_seconds": 4, "purpose": "Establish the conflict", "action": "Describe one observable action", "camera": "Locked medium shot", "characters": [], "props": [], "entry_state": {}, "exit_state": {}}
+  ]
+}

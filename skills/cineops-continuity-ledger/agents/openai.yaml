@@ -1,0 +1,4 @@
+interface:
+  display_name: "CineOps Continuity Ledger"
+  short_description: "Track canonical state and change impact across episodes"
+  default_prompt: "Use $cineops-continuity-ledger to create or audit the continuity state for this production."

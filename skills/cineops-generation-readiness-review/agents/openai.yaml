@@ -1,0 +1,4 @@
+interface:
+  display_name: "CineOps Generation Readiness Review"
+  short_description: "Block costly generation when shots are unclear or inconsistent"
+  default_prompt: "Use $cineops-generation-readiness-review to decide whether these shots are ready for generation."

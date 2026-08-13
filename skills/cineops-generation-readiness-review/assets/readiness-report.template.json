@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "reviews": [
+    {
+      "shot_id": "SH001",
+      "decision": "revise",
+      "checks": {"continuity": "pass", "blocking": "fail", "performance": "unknown", "camera": "pass", "transition": "unknown", "generation_clarity": "fail"},
+      "notes": ["State the actor's final position and prop hand before generation."],
+      "owner": "shot-planning",
+      "recheck_when": "Blocking and exit state are updated"
+    }
+  ]
+}

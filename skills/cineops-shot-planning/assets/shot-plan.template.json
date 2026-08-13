@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "shots": [
+    {
+      "id": "SH001",
+      "scene_id": "SC001",
+      "order": 1,
+      "duration_seconds": 4,
+      "purpose": "Reveal the changed relationship",
+      "action": "One observable action sequence",
+      "camera": "Framing, position, lens intent, and motivated movement",
+      "characters": ["CHAR-LEAD"],
+      "props": [],
+      "location_id": "LOC-ROOM",
+      "sound": ["Specific sync or off-screen cue"],
+      "entry_state": {},
+      "exit_state": {}
+    }
+  ]
+}

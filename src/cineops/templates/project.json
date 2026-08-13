@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "project_id": "PROJECT-SLUG",
+  "title": "Untitled production",
+  "episodes": [
+    {"id": "EP001", "title": "Episode 1", "scenes": [{"id": "SC001", "summary": "Describe the scene's irreversible change."}]}
+  ]
+}

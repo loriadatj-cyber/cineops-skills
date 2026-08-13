@@ -1,0 +1,4 @@
+interface:
+  display_name: "CineOps Shot Planning"
+  short_description: "Turn approved scenes into production-ready shot plans"
+  default_prompt: "Use $cineops-shot-planning to plan shots, blocking, timing, and handoffs for this scene."

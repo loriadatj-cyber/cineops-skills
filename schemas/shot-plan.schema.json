@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/loriadatj-cyber/cineops-skills/schemas/shot-plan.schema.json",
+  "title": "CineOps shot plan",
+  "type": "object",
+  "required": ["schema_version", "shots"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "shots": {"type": "array", "items": {"type": "object", "required": ["id", "scene_id", "order", "duration_seconds", "purpose", "action", "camera", "entry_state", "exit_state"], "properties": {"id": {"type": "string", "pattern": "^SH[0-9]{3}$"}, "scene_id": {"type": "string", "pattern": "^SC[0-9]{3}$"}, "order": {"type": "integer", "minimum": 1}, "duration_seconds": {"type": "number", "exclusiveMinimum": 0}, "purpose": {"type": "string"}, "action": {"type": "string"}, "camera": {"type": "string"}, "entry_state": {"type": "object"}, "exit_state": {"type": "object"}}}}
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/loriadatj-cyber/cineops-skills/schemas/continuity-ledger.schema.json",
+  "title": "CineOps continuity ledger",
+  "type": "object",
+  "required": ["schema_version", "characters", "locations", "props", "scene_states"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "characters": {"type": "array", "items": {"$ref": "#/$defs/entity"}},
+    "locations": {"type": "array", "items": {"$ref": "#/$defs/entity"}},
+    "props": {"type": "array", "items": {"$ref": "#/$defs/entity"}},
+    "scene_states": {"type": "array", "items": {"type": "object", "required": ["scene_id", "entry", "exit"], "properties": {"scene_id": {"type": "string", "pattern": "^SC[0-9]{3}$"}, "entry": {"type": "object"}, "exit": {"type": "object"}}}}
+  },
+  "$defs": {"entity": {"type": "object", "required": ["id", "name"], "properties": {"id": {"type": "string"}, "name": {"type": "string"}, "canonical": {"type": "object"}, "unknowns": {"type": "array"}, "proposals": {"type": "array"}}}}
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/loriadatj-cyber/cineops-skills/schemas/readiness-report.schema.json",
+  "title": "CineOps readiness report",
+  "type": "object",
+  "required": ["schema_version", "reviews"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "reviews": {"type": "array", "items": {"type": "object", "required": ["shot_id", "decision", "checks", "notes"], "properties": {"shot_id": {"type": "string", "pattern": "^SH[0-9]{3}$"}, "decision": {"enum": ["ready", "revise", "blocked"]}, "checks": {"type": "object", "additionalProperties": {"enum": ["pass", "fail", "unknown"]}}, "notes": {"type": "array", "items": {"type": "string"}}}}}
+  }
+}

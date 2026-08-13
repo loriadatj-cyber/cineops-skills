@@ -1,0 +1,4 @@
+interface:
+  display_name: "CineOps Router"
+  short_description: "Route AI film work through production-safe stages"
+  default_prompt: "Use $cineops-router to plan and route this AI film production task."

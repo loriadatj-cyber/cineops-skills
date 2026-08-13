@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/loriadatj-cyber/cineops-skills/schemas/project.schema.json",
+  "title": "CineOps project",
+  "type": "object",
+  "required": ["schema_version", "project_id", "title", "episodes"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "project_id": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "episodes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/episode"}}
+  },
+  "$defs": {
+    "scene": {"type": "object", "required": ["id", "summary"], "properties": {"id": {"type": "string", "pattern": "^SC[0-9]{3}$"}, "summary": {"type": "string"}}},
+    "episode": {"type": "object", "required": ["id", "title", "scenes"], "properties": {"id": {"type": "string", "pattern": "^EP[0-9]{3}$"}, "title": {"type": "string"}, "scenes": {"type": "array", "items": {"$ref": "#/$defs/scene"}}}}
+  }
+}

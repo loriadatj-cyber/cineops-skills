@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "reviews": [
+    {"shot_id": "SH001", "decision": "ready", "checks": {"continuity": "pass", "blocking": "pass", "performance": "pass", "camera": "pass", "transition": "pass", "generation_clarity": "pass"}, "notes": []},
+    {"shot_id": "SH002", "decision": "ready", "checks": {"continuity": "pass", "blocking": "pass", "performance": "pass", "camera": "pass", "transition": "pass", "generation_clarity": "pass"}, "notes": ["Preserve the left-sleeve card state on the final frame."]},
+    {"shot_id": "SH003", "decision": "ready", "checks": {"continuity": "pass", "blocking": "pass", "performance": "pass", "camera": "pass", "transition": "pass", "generation_clarity": "pass"}, "notes": ["The camera jolt occurs only after the false confession."]}
+  ]
+}

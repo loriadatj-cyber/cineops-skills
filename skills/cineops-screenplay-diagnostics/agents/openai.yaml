@@ -1,0 +1,4 @@
+interface:
+  display_name: "CineOps Screenplay Diagnostics"
+  short_description: "Audit screenplay causality, performance, and producibility"
+  default_prompt: "Use $cineops-screenplay-diagnostics to review this screenplay for story and production risks."
