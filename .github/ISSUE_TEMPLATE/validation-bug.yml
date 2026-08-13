@@ -1,0 +1,61 @@
+name: Validator bug
+description: Report a reproducible false positive, false negative, crash, or contract ambiguity.
+title: "[Validator]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit the smallest safe reproduction possible. Replace production names and content with synthetic data.
+  - type: input
+    id: version
+    attributes:
+      label: CineOps version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Failure category
+      options:
+        - False positive
+        - False negative
+        - Crash or traceback
+        - Inconsistent result
+        - Contract or error-message ambiguity
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command and environment
+      placeholder: "cineops validate fixture; Windows 11; Python 3.12"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Paste small synthetic JSON artifacts or link a public fixture.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+      description: Include the exact finding code or traceback when available.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safe disclosure
+      options:
+        - label: This report contains no credentials or confidential production material.
+          required: true

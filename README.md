@@ -73,6 +73,10 @@ python -m cineops.cli validate examples/glass-elevator
 
 See [CONTRIBUTING.md](CONTRIBUTING.md), [ROADMAP.md](ROADMAP.md), and [SECURITY.md](SECURITY.md). The example story and all workflow text in this repository are original project materials.
 
+## Share A Production Case
+
+Real use, failed use, and abandoned use are all valuable. Read the [adoption evidence policy](docs/ADOPTION.md), then open a Production adoption report or use the [case template](docs/adoption-case.template.md). Reports must separate observed evidence from interpretation and must not expose private production material.
+
 ## Status
 
 Version `0.1.0` is an alpha contract release. We welcome real production cases, anonymized failure reports, and adapters that keep the core provider-agnostic.

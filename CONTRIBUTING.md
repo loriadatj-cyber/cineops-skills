@@ -10,6 +10,8 @@ Thank you for improving CineOps. Useful contributions include reproducible produ
 4. Add or update tests for deterministic behavior.
 5. Run `python -m unittest discover -s tests -v` and validate every changed example.
 
+Production adoption reports follow [docs/ADOPTION.md](docs/ADOPTION.md). Maintainers label evidence by verification level and do not infer adoption from stars or downloads alone.
+
 Skill text must distinguish approved facts, drafts, proposals, and unknowns. Avoid claims that a tool inspected an asset it could not access.
 
 By contributing, you agree that your contribution is licensed under Apache-2.0.

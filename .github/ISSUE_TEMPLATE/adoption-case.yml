@@ -1,0 +1,70 @@
+name: Production adoption report
+description: Share an anonymized real production case or propose one for validation.
+title: "[Adoption]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for testing CineOps in a real workflow. Do not include private scripts, unreleased media, credentials, client names, or copyrighted material without permission. An anonymized summary is welcome.
+  - type: dropdown
+    id: relationship
+    attributes:
+      label: Relationship to the production
+      options:
+        - Creator or production team member
+        - Tool integrator or consultant
+        - Researcher or evaluator
+        - Public-project maintainer
+        - Other authorized participant
+    validations:
+      required: true
+  - type: input
+    id: scope
+    attributes:
+      label: Production scope
+      description: Format, approximate runtime, and number of scenes or shots. Keep identities anonymous when needed.
+      placeholder: "Example: 3-minute vertical short, 8 scenes, 31 planned shots"
+    validations:
+      required: true
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Where CineOps was used
+      description: Name the skills, CLI commands, and production stages actually used.
+      placeholder: "Screenplay diagnosis -> shot planning -> continuity ledger -> readiness review"
+    validations:
+      required: true
+  - type: textarea
+    id: observed_result
+    attributes:
+      label: Observed result
+      description: Report measured or directly observed changes. Separate evidence from interpretation.
+      placeholder: "Include avoided regenerations, defects found, review time, or handoff changes. State when no improvement was observed."
+    validations:
+      required: true
+  - type: textarea
+    id: failure
+    attributes:
+      label: What failed or remained difficult
+      description: A useful adoption report includes friction, false positives, missed defects, and abandoned steps.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Reproducible evidence
+      description: Link public artifacts or describe the anonymized fixture you can contribute.
+      placeholder: "Public repository, validator output, before/after artifact, or a minimal synthetic reproduction"
+    validations:
+      required: true
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Permissions and privacy
+      options:
+        - label: I have permission to share every public artifact linked in this report.
+          required: true
+        - label: I removed credentials, private identifiers, and confidential production material.
+          required: true
+        - label: I understand that unverified claims will be labeled as self-reported.
+          required: true
