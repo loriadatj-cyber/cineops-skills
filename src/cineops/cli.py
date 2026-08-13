@@ -8,6 +8,7 @@ import shutil
 import sys
 from pathlib import Path
 
+from .evidence import build_evidence_summary
 from .impact import compare_ledgers
 from .validator import (
     load_json,
@@ -72,6 +73,18 @@ def command_impact(before: Path, after: Path) -> int:
     return 0
 
 
+def command_evidence(root: Path, output: Path | None) -> int:
+    report = build_evidence_summary(root)
+    serialized = json.dumps(report, indent=2) + "\n"
+    if output is None:
+        print(serialized, end="")
+    else:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(serialized, encoding="utf-8")
+        print(f"Wrote privacy-safe evidence summary to {output}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="cineops", description="Validate AI film production artifacts")
     parser.add_argument("--version", action="version", version="cineops 0.1.0")
@@ -84,6 +97,9 @@ def build_parser() -> argparse.ArgumentParser:
     gate_parser = subparsers.add_parser("gate", help="enforce release readiness for every shot")
     gate_parser.add_argument("project", type=Path)
     gate_parser.add_argument("--json", action="store_true", dest="output_json")
+    evidence_parser = subparsers.add_parser("evidence", help="export a privacy-safe pilot summary")
+    evidence_parser.add_argument("project", type=Path)
+    evidence_parser.add_argument("--output", "-o", type=Path)
     impact_parser = subparsers.add_parser("impact", help="compare two continuity ledgers")
     impact_parser.add_argument("before", type=Path)
     impact_parser.add_argument("after", type=Path)
@@ -98,6 +114,8 @@ def main(argv: list[str] | None = None) -> int:
         return command_validate(args.project, args.output_json)
     if args.command == "gate":
         return command_gate(args.project, args.output_json)
+    if args.command == "evidence":
+        return command_evidence(args.project, args.output)
     if args.command == "impact":
         return command_impact(args.before, args.after)
     return 2

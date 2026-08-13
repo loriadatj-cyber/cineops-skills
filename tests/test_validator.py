@@ -1,10 +1,12 @@
 import copy
 import json
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
 
-from cineops.cli import command_gate, command_init
+from cineops.cli import command_evidence, command_gate, command_init
+from cineops.evidence import build_evidence_summary
 from cineops.impact import compare_ledgers
 from cineops.validator import summarize, validate_project, validate_release_gate
 
@@ -136,6 +138,51 @@ class ValidatorTests(unittest.TestCase):
         gate_findings = validate_release_gate(pilot)
         self.assertEqual(7, summarize(gate_findings)["error"])
         self.assertEqual({"revision-required"}, {item.code for item in gate_findings})
+
+    def test_evidence_summary_is_aggregate_and_privacy_safe(self):
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "private-project"
+            shutil.copytree(ROOT / "examples" / "glass-elevator", target)
+            secret_markers = [
+                "PRIVATE-TITLE-927",
+                "PRIVATE-CHARACTER-381",
+                "PRIVATE-ACTION-664",
+                "PRIVATE-INVALID-DECISION-482",
+            ]
+
+            project_path = target / "project.json"
+            project = json.loads(project_path.read_text(encoding="utf-8"))
+            project["title"] = secret_markers[0]
+            project_path.write_text(json.dumps(project), encoding="utf-8")
+
+            ledger_path = target / "continuity-ledger.json"
+            ledger = json.loads(ledger_path.read_text(encoding="utf-8"))
+            ledger["characters"][0]["name"] = secret_markers[1]
+            ledger_path.write_text(json.dumps(ledger), encoding="utf-8")
+
+            shots_path = target / "shot-plan.json"
+            shots = json.loads(shots_path.read_text(encoding="utf-8"))
+            shots["shots"][0]["action"] = secret_markers[2]
+            shots_path.write_text(json.dumps(shots), encoding="utf-8")
+
+            readiness_path = target / "readiness-report.json"
+            readiness = json.loads(readiness_path.read_text(encoding="utf-8"))
+            readiness["reviews"][0]["decision"] = secret_markers[3]
+            readiness_path.write_text(json.dumps(readiness), encoding="utf-8")
+
+            report = build_evidence_summary(target)
+            serialized = json.dumps(report)
+            for marker in secret_markers:
+                self.assertNotIn(marker, serialized)
+            self.assertNotIn(str(target), serialized)
+            self.assertEqual(3, report["artifact_counts"]["shots"])
+            self.assertEqual(1, report["review_decisions"]["invalid"])
+            self.assertFalse(report["validation"]["valid"])
+            self.assertFalse(report["release_gate"]["release_ready"])
+
+            output = target / "pilot-evidence.json"
+            self.assertEqual(0, command_evidence(target, output))
+            self.assertEqual(report, json.loads(output.read_text(encoding="utf-8")))
 
 
 if __name__ == "__main__":

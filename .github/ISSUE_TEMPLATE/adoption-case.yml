@@ -18,6 +18,25 @@ body:
         - Other authorized participant
     validations:
       required: true
+  - type: dropdown
+    id: maintainer_relationship
+    attributes:
+      label: Relationship to the CineOps maintainers
+      description: This is used to separate independent adoption from maintainer testing.
+      options:
+        - Independent; no ownership, employment, or project control relationship
+        - External collaborator or client relationship
+        - CineOps maintainer or maintainer-controlled project
+        - Unsure; please review before classifying
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: CineOps version or commit
+      placeholder: "Example: 0.1.0 or commit 2527691"
+    validations:
+      required: true
   - type: input
     id: scope
     attributes:
@@ -32,6 +51,14 @@ body:
       label: Where CineOps was used
       description: Name the skills, CLI commands, and production stages actually used.
       placeholder: "Screenplay diagnosis -> shot planning -> continuity ledger -> readiness review"
+    validations:
+      required: true
+  - type: textarea
+    id: baseline
+    attributes:
+      label: Baseline workflow or failure mode
+      description: Describe what happened before CineOps, or what you expected to test.
+      placeholder: "Example: continuity review was manual and prop handoff errors were found only after generation"
     validations:
       required: true
   - type: textarea
@@ -54,7 +81,18 @@ body:
     attributes:
       label: Reproducible evidence
       description: Link public artifacts or describe the anonymized fixture you can contribute.
-      placeholder: "Public repository, validator output, before/after artifact, or a minimal synthetic reproduction"
+      placeholder: "Paste cineops-evidence.json in a fenced JSON block, or link a public/anonymized fixture"
+    validations:
+      required: true
+  - type: dropdown
+    id: requested_level
+    attributes:
+      label: Evidence available for review
+      options:
+        - Authorized report only (candidate Level 1)
+        - Privacy-safe evidence JSON or anonymized artifacts (candidate Level 2)
+        - Public reproducible project or independent integration (candidate Level 3)
+        - Unsure; maintainer should classify
     validations:
       required: true
   - type: checkboxes
@@ -67,4 +105,6 @@ body:
         - label: I removed credentials, private identifiers, and confidential production material.
           required: true
         - label: I understand that unverified claims will be labeled as self-reported.
+          required: true
+        - label: I reviewed all pasted output and attachments for sensitive information.
           required: true

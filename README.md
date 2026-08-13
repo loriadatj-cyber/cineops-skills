@@ -30,6 +30,7 @@ python -m pip install -e .
 cineops init my-production
 cineops validate my-production
 cineops gate my-production
+cineops evidence my-production --output cineops-evidence.json
 ```
 
 Validate the included reproducible example:
@@ -88,6 +89,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md), [ROADMAP.md](ROADMAP.md), and [SECURITY.
 ## Share A Production Case
 
 Real use, failed use, and abandoned use are all valuable. Read the [adoption evidence policy](docs/ADOPTION.md), then open a Production adoption report or use the [case template](docs/adoption-case.template.md). Reports must separate observed evidence from interpretation and must not expose private production material.
+
+Independent participants can complete the [15-minute external pilot](docs/EXTERNAL-PILOT-QUICKSTART.md). `cineops evidence` creates an aggregate technical summary that omits creative content, identifiers, messages, and filesystem paths.
 
 The [adoption evidence index](adoption/README.md) reports external cases separately from maintainer pilots.
 

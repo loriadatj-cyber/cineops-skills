@@ -28,6 +28,8 @@ Every accepted case should record:
 
 Use `adoption-case.template.md` for repository-based cases or open a Production adoption report through GitHub Issues.
 
+For a minimal real-workflow test, follow the [15-minute external pilot](EXTERNAL-PILOT-QUICKSTART.md). The `cineops evidence` command exports aggregate technical results without creative content or identifiers; participants must still inspect the file before sharing it.
+
 ## Privacy Rules
 
 Never request or publish credentials, client identities, private scripts, unreleased frames, contractual data, or copyrighted media without explicit permission. Synthetic fixtures should preserve the failure mechanism while replacing creative content and identifying details.

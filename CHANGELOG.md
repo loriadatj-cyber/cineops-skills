@@ -9,6 +9,7 @@ All notable changes are documented here.
 - Added regression tests that reject both missed findings and unexpected extra findings.
 - Added `cineops gate` to block release when shots require revision, are blocked, or remain unreviewed.
 - Added an anonymized Level 0 maintainer production pilot and an adoption evidence index.
+- Added a 15-minute external pilot flow and privacy-safe `cineops evidence` export.
 
 ## 0.1.0 - 2026-08-13
 
