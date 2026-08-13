@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/loriadatj-cyber/cineops-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/loriadatj-cyber/cineops-skills/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![External pilots wanted](https://img.shields.io/badge/external_pilots-wanted-2ea44f.svg)](https://github.com/loriadatj-cyber/cineops-skills/issues/2)
 
 CineOps is an open, provider-agnostic production-control toolkit for AI filmmaking. It combines five Codex Skills with a deterministic CLI that validates the artifacts passed between story, shot planning, continuity, and generation review.
 
@@ -26,12 +27,14 @@ AI film workflows often lose information between stages. A renamed character bre
 Install the CLI locally:
 
 ```bash
-python -m pip install -e .
+python -m pip install https://github.com/loriadatj-cyber/cineops-skills/releases/download/v0.1.1/cineops-0.1.1-py3-none-any.whl
 cineops init my-production
 cineops validate my-production
 cineops gate my-production
 cineops evidence my-production --output cineops-evidence.json
 ```
+
+Clone the repository instead when you want the bundled Codex Skills, schemas, examples, and benchmark corpus.
 
 Validate the included reproducible example:
 
@@ -96,7 +99,7 @@ The [adoption evidence index](adoption/README.md) reports external cases separat
 
 ## Status
 
-Version `0.1.0` is an alpha contract release. We welcome real production cases, anonymized failure reports, and adapters that keep the core provider-agnostic.
+Version `0.1.1` is an alpha evidence release. We welcome real production cases, anonymized failure reports, and adapters that keep the core provider-agnostic.
 
 ## License
 

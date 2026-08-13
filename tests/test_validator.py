@@ -3,8 +3,10 @@ import json
 import shutil
 import tempfile
 import unittest
+from importlib.metadata import version
 from pathlib import Path
 
+from cineops import __version__
 from cineops.cli import command_evidence, command_gate, command_init
 from cineops.evidence import build_evidence_summary
 from cineops.impact import compare_ledgers
@@ -15,6 +17,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class ValidatorTests(unittest.TestCase):
+    def test_package_versions_match(self):
+        self.assertEqual("0.1.1", __version__)
+        self.assertEqual(__version__, version("cineops"))
+
     def test_valid_example_has_no_findings(self):
         findings = validate_project(ROOT / "examples" / "glass-elevator")
         self.assertEqual([], findings)

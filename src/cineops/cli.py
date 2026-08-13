@@ -8,6 +8,7 @@ import shutil
 import sys
 from pathlib import Path
 
+from . import __version__
 from .evidence import build_evidence_summary
 from .impact import compare_ledgers
 from .validator import (
@@ -87,7 +88,7 @@ def command_evidence(root: Path, output: Path | None) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="cineops", description="Validate AI film production artifacts")
-    parser.add_argument("--version", action="version", version="cineops 0.1.0")
+    parser.add_argument("--version", action="version", version=f"cineops {__version__}")
     subparsers = parser.add_subparsers(dest="command", required=True)
     init_parser = subparsers.add_parser("init", help="create a blank CineOps project")
     init_parser.add_argument("destination", type=Path)

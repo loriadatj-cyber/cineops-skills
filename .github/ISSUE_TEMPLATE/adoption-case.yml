@@ -34,7 +34,7 @@ body:
     id: version
     attributes:
       label: CineOps version or commit
-      placeholder: "Example: 0.1.0 or commit 2527691"
+      placeholder: "Example: 0.1.1 or a full commit SHA"
     validations:
       required: true
   - type: input

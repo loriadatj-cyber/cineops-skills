@@ -18,12 +18,11 @@ You may submit a case when you are authorized to use the workflow and are indepe
 Python 3.10 or newer is required.
 
 ```bash
-git clone https://github.com/loriadatj-cyber/cineops-skills.git
-cd cineops-skills
-python -m pip install -e .
+python -m pip install https://github.com/loriadatj-cyber/cineops-skills/releases/download/v0.1.1/cineops-0.1.1-py3-none-any.whl
 cineops --version
-git rev-parse --short HEAD
 ```
+
+The expected version is `0.1.1`. The wheel is attached to a versioned GitHub release so every participant tests the same source revision.
 
 ## Model One Real Handoff (6 Minutes)
 

@@ -22,5 +22,6 @@ jobs:
       - run: python -m pip install -e ".[dev]"
       - run: python -m unittest discover -s tests -v
       - run: cineops validate examples/glass-elevator
+      - run: cineops evidence examples/glass-elevator
       - name: Confirm broken fixture is rejected
         run: python -c "import subprocess, sys; sys.exit(0 if subprocess.run(['cineops', 'validate', 'examples/broken-handoff']).returncode else 1)"
