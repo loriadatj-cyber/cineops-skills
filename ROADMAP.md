@@ -19,7 +19,7 @@
 
 - [ ] Optional adapters for editing and generation platforms
 - [ ] Timeline interchange experiments
-- [ ] Visual report output
+- [x] Visual report output
 - [ ] Community-maintained localization
 
 Platform integrations must remain optional. The core contracts and validator will stay provider-agnostic.

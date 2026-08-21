@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cineops"
-version = "0.1.1"
+version = "0.1.2"
 description = "Deterministic production control for AI filmmaking workflows"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -35,4 +35,4 @@ package-dir = {"" = "src"}
 where = ["src"]
 
 [tool.setuptools.package-data]
-cineops = ["templates/*.json"]
+cineops = ["templates/*.json", "demo/*/*.json"]

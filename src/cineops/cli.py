@@ -11,6 +11,7 @@ from pathlib import Path
 from . import __version__
 from .evidence import build_evidence_summary
 from .impact import compare_ledgers
+from .report import render_demo_report, render_project_report
 from .validator import (
     load_json,
     summarize,
@@ -86,6 +87,32 @@ def command_evidence(root: Path, output: Path | None) -> int:
     return 0
 
 
+def command_report(root: Path, output: Path) -> int:
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(render_project_report(root), encoding="utf-8")
+    print(f"Wrote visual production report to {output}")
+    return 0
+
+
+def command_demo(destination: Path) -> int:
+    if destination.exists() and (not destination.is_dir() or any(destination.iterdir())):
+        print(f"Demo destination must be empty: {destination}", file=sys.stderr)
+        return 2
+    destination.mkdir(parents=True, exist_ok=True)
+    source_root = Path(__file__).with_name("demo")
+    before = destination / "before"
+    after = destination / "after"
+    shutil.copytree(source_root / "before", before)
+    shutil.copytree(source_root / "after", after)
+    report = destination / "cineops-demo.html"
+    report.write_text(render_demo_report(before, after), encoding="utf-8")
+    print("CineOps demo created:")
+    print(f"  before: {before}")
+    print(f"  after:  {after}")
+    print(f"  report: {report}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="cineops", description="Validate AI film production artifacts")
     parser.add_argument("--version", action="version", version=f"cineops {__version__}")
@@ -104,6 +131,11 @@ def build_parser() -> argparse.ArgumentParser:
     impact_parser = subparsers.add_parser("impact", help="compare two continuity ledgers")
     impact_parser.add_argument("before", type=Path)
     impact_parser.add_argument("after", type=Path)
+    report_parser = subparsers.add_parser("report", help="write a self-contained visual readiness report")
+    report_parser.add_argument("project", type=Path)
+    report_parser.add_argument("--output", "-o", type=Path, default=Path("cineops-report.html"))
+    demo_parser = subparsers.add_parser("demo", help="create a zero-configuration before/after demo")
+    demo_parser.add_argument("destination", type=Path, nargs="?", default=Path("cineops-demo"))
     return parser
 
 
@@ -119,6 +151,10 @@ def main(argv: list[str] | None = None) -> int:
         return command_evidence(args.project, args.output)
     if args.command == "impact":
         return command_impact(args.before, args.after)
+    if args.command == "report":
+        return command_report(args.project, args.output)
+    if args.command == "demo":
+        return command_demo(args.destination)
     return 2
 
 

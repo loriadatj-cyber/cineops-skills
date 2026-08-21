@@ -2,6 +2,12 @@
 
 All notable changes are documented here.
 
+## 0.1.2 - 2026-08-20
+
+- Added a zero-configuration `cineops demo` with paired broken and repaired handoffs.
+- Added a self-contained, local visual report through `cineops report`.
+- Added cross-platform CI and regression coverage for both first-run experiences.
+
 ## 0.1.1 - 2026-08-13
 
 - Added a versioned corpus of 12 original continuity-failure fixtures with exact expected findings.

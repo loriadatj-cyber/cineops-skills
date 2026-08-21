@@ -10,6 +10,23 @@ CineOps is an open, provider-agnostic production-control toolkit for AI filmmaki
 
 It is deliberately not a prompt collection. Creative output remains flexible; IDs, references, state transitions, review coverage, and release gates are inspectable and testable.
 
+## See The Value In 90 Seconds
+
+Install the fixed release, create the zero-configuration demo, and open its visual report:
+
+```bash
+python -m pip install https://github.com/loriadatj-cyber/cineops-skills/releases/download/v0.1.2/cineops-0.1.2-py3-none-any.whl
+cineops demo
+```
+
+Open `cineops-demo/cineops-demo.html`. It compares the same one-shot production handoff before and after CineOps catches and repairs broken references, invalid timing, missing canonical state, and missing readiness review. The report is a self-contained local file with no external scripts, fonts, analytics, or upload step.
+
+For your own project:
+
+```bash
+cineops report my-production --output cineops-report.html
+```
+
 ## Why CineOps
 
 AI film workflows often lose information between stages. A renamed character breaks prompts, a prop changes hands between shots, an approved revision never reaches the storyboard, or an attractive shot cannot edit into the sequence. CineOps treats those handoffs as production contracts.
@@ -29,11 +46,12 @@ AI film workflows often lose information between stages. A renamed character bre
 Install the CLI locally:
 
 ```bash
-python -m pip install https://github.com/loriadatj-cyber/cineops-skills/releases/download/v0.1.1/cineops-0.1.1-py3-none-any.whl
+python -m pip install https://github.com/loriadatj-cyber/cineops-skills/releases/download/v0.1.2/cineops-0.1.2-py3-none-any.whl
 cineops init my-production
 cineops validate my-production
 cineops gate my-production
 cineops evidence my-production --output cineops-evidence.json
+cineops report my-production --output cineops-report.html
 ```
 
 Clone the repository instead when you want the bundled Codex Skills, schemas, examples, and benchmark corpus.
@@ -74,6 +92,8 @@ Stable IDs use `EP001`, `SC001`, `SH001`, `CHAR-*`, `LOC-*`, and `PROP-*`. The C
 
 `cineops validate` checks whether the artifact handoff is structurally coherent. `cineops gate` additionally fails when any shot is marked `revise` or `blocked`, or has no review. Keeping the commands separate lets teams inspect incomplete work without accidentally treating it as release-ready.
 
+`cineops report` renders the same deterministic checks as a readable, lightly animated HTML dashboard. It runs locally and does not send production data anywhere.
+
 ## Design Principles
 
 - Human approval owns canon, publishing, and paid generation.
@@ -103,7 +123,7 @@ Maintainers and community members can reuse the [outreach kit](docs/OUTREACH.md)
 
 ## Status
 
-Version `0.1.1` is an alpha evidence release. We welcome real production cases, anonymized failure reports, and adapters that keep the core provider-agnostic.
+Version `0.1.2` is an alpha evidence release. We welcome real production cases, anonymized failure reports, and adapters that keep the core provider-agnostic.
 
 ## License
 
