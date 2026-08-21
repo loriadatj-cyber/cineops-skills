@@ -7,7 +7,7 @@ from importlib.metadata import version
 from pathlib import Path
 
 from cineops import __version__
-from cineops.cli import command_evidence, command_gate, command_init
+from cineops.cli import command_demo, command_evidence, command_gate, command_init, command_report
 from cineops.evidence import build_evidence_summary
 from cineops.impact import compare_ledgers
 from cineops.validator import summarize, validate_project, validate_release_gate
@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class ValidatorTests(unittest.TestCase):
     def test_package_versions_match(self):
-        self.assertEqual("0.1.1", __version__)
+        self.assertEqual("0.1.2", __version__)
         self.assertEqual(__version__, version("cineops"))
 
     def test_valid_example_has_no_findings(self):
@@ -189,6 +189,40 @@ class ValidatorTests(unittest.TestCase):
             output = target / "pilot-evidence.json"
             self.assertEqual(0, command_evidence(target, output))
             self.assertEqual(report, json.loads(output.read_text(encoding="utf-8")))
+
+    def test_demo_shows_a_broken_and_repaired_handoff(self):
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "demo"
+            self.assertEqual(0, command_demo(target))
+            before = target / "before"
+            after = target / "after"
+            self.assertGreater(summarize(validate_project(before))["error"], 0)
+            self.assertEqual([], validate_project(after))
+            self.assertEqual(0, summarize(validate_release_gate(after))["error"])
+            report = (target / "cineops-demo.html").read_text(encoding="utf-8")
+            self.assertIn("Before CineOps", report)
+            self.assertIn("After repair", report)
+            self.assertIn("Release blocked", report)
+            self.assertIn("Release ready", report)
+
+    def test_demo_refuses_to_overwrite_a_nonempty_destination(self):
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "demo"
+            target.mkdir()
+            (target / "keep.txt").write_text("keep", encoding="utf-8")
+            self.assertEqual(2, command_demo(target))
+            self.assertEqual("keep", (target / "keep.txt").read_text(encoding="utf-8"))
+
+    def test_visual_report_is_self_contained(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "report.html"
+            self.assertEqual(0, command_report(ROOT / "examples" / "glass-elevator", output))
+            report = output.read_text(encoding="utf-8")
+            self.assertIn("Production Readiness", report)
+            self.assertIn("Release ready", report)
+            self.assertNotIn("<script", report)
+            self.assertNotIn("http://", report)
+            self.assertNotIn("https://", report)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,1 @@
+{"schema_version":"1.0","shots":[{"id":"SH001","scene_id":"SC001","order":1,"duration_seconds":4,"purpose":"Complete the handoff","action":"The performer crosses frame with the prop.","camera":"Locked medium shot.","characters":["CHAR-PERFORMER"],"props":["PROP-HANDOFF"],"entry_state":{"prop":"right hand"},"exit_state":{"prop":"right hand"},"source_revision":"v1"}]}

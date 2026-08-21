@@ -5,7 +5,7 @@ This kit helps maintainers and community members invite relevant participants wi
 ## Canonical Links
 
 - Repository: https://github.com/loriadatj-cyber/cineops-skills
-- Fixed release: https://github.com/loriadatj-cyber/cineops-skills/releases/tag/v0.1.1
+- Fixed release: https://github.com/loriadatj-cyber/cineops-skills/releases/tag/v0.1.2
 - 15-minute pilot: https://github.com/loriadatj-cyber/cineops-skills/blob/main/docs/EXTERNAL-PILOT-QUICKSTART.md
 - Questions and announcement: https://github.com/loriadatj-cyber/cineops-skills/discussions/4
 - Structured evidence report: https://github.com/loriadatj-cyber/cineops-skills/issues/new?template=adoption-case.yml
